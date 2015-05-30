@@ -1,21 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.template import RequestContext, loader
 
 # Create your views here.
 
 def main_page(request):
-    output = u'''
-        <html>
-            <head><title>%s</title></head>
-            <body>
-                <h1>%s</h1><p>%s</p>
-            </body>
-        </html>
-    ''' % (
-            u'Django Bookmarks',
-            u'Welcome to Django Bookmarks',
-            u'Where you can store and share bookmarks!'
-    )
+    template = loader.get_template('main_page.html')
+    variables = RequestContext(request, {
+        'head_title': u'Django Bookmarks',
+        'page_title': u'Welcome to Django Bookmarks',
+        'page_body': u'Where you can store and share bookmarks!'
+        })
+    output = template.render(variables)
     return HttpResponse(output)
-
-

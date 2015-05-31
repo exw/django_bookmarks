@@ -5,8 +5,7 @@
     <body>
         <h1>Welcome to Django Bookmarks</h1>
         {% if user.username %}
-        <p>Welcome {{ user.username }}:</p>
-            Here you can store and share bookmarks!</p>
+        <p>Welcome {{ user.username }}! Here you can store and share bookmarks!</p>
         {% else %}
             <p> Welcome anonymous user!
             You need to <a href="/login/">login</a>

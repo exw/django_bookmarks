@@ -8,9 +8,7 @@ from django.contrib.auth.models import User
 def main_page(request):
     template = loader.get_template('main_page.html')
     variables = RequestContext(request, {
-        'head_title': u'Django Bookmarks',
-        'page_title': u'Welcome to Django Bookmarks',
-        'page_body': u'Where you can store and share bookmarks!'
+        'user': request.user
         })
     output = template.render(variables)
     return HttpResponse(output)

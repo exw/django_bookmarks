@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', bookmarks.main_page, name='main_page'),
     url(r'^user/(\w+)/$', bookmarks.user_page, name='user_page'),
+    url(r'^login/$', 'django.contrib.auth.views.login'),
 ]

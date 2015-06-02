@@ -21,11 +21,19 @@ from django.views.generic.base import TemplateView
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    # Browsing
     url(r'^$', bookmarks.main_page, name='main_page'),
     url(r'^user/(\w+)/$', bookmarks.user_page, name='user_page'),
+
+    # Session management
     url(r'^login/$', 'django.contrib.auth.views.login'),
     url(r'^logout/$', bookmarks.logout_page, name='logout_page'),
     url(r'^register/$', bookmarks.register_page, name='registration_page'),
-    url(r'^register/success/$', TemplateView.as_view(template_name='registration/register_success.html'))
+    url(r'^register/success/$', TemplateView.as_view(template_name='registration/register_success.html')),
+
+    # Account management
+    url(r'^save/$', bookmarks.bookmark_save_page, name='bookmark_save_page'),
+
+    # Static Files
     # url(r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': site_media}),
 ]

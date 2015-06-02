@@ -2,16 +2,18 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import RequestContext, loader
 from django.contrib.auth.models import User
+from django.shortcuts import render_to_response
+
+from django.http import HttpResponseRedirect
+from django.contrib.auth import logout
 
 # Create your views here.
 
 def main_page(request):
-    template = loader.get_template('main_page.html')
-    variables = RequestContext(request, {
-        'user': request.user
-        })
-    output = template.render(variables)
-    return HttpResponse(output)
+    return render_to_response(
+        'main_page.html',
+        {'user': request.user}
+    )
 
 def user_page(request, username):
     try:
@@ -21,10 +23,13 @@ def user_page(request, username):
 
     bookmarks = user.bookmark_set.all()
 
-    template = loader.get_template('user_page.html')
-    variables = RequestContext(request, {
-        'username': username,
-        'bookmarks': bookmarks
-        })
-    output = template.render(variables)
-    return HttpResponse(output)
+    return render_to_response(
+            'user_page.html',
+            {'username': username,
+            'bookmarks':bookmarks}
+            )
+
+def logout_page(request):
+    logout(request)
+    return HttpResponseRedirect('/')
+

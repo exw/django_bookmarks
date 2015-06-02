@@ -22,4 +22,6 @@ urlpatterns = [
     url(r'^$', bookmarks.main_page, name='main_page'),
     url(r'^user/(\w+)/$', bookmarks.user_page, name='user_page'),
     url(r'^login/$', 'django.contrib.auth.views.login'),
+    url(r'^logout/$', bookmarks.logout_page, name='logout_page'),
+    # url(r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': site_media}),
 ]

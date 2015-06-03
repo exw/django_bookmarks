@@ -10,6 +10,7 @@ from django.contrib.auth import logout
 from bookmarks.forms import *
 
 from bookmarks.models import *
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -58,6 +59,7 @@ def register_page(request):
             variables
     )
 
+@login_required
 def bookmark_save_page(request):
     if request.method == 'POST':
         form = BookmarkSaveForm(request.POST)

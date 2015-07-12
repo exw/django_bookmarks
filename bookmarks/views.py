@@ -6,6 +6,7 @@ from django.shortcuts import render_to_response
 
 from django.http import HttpResponseRedirect
 from django.contrib.auth import logout
+from django.shortcuts import get_object_or_404
 
 from bookmarks.forms import *
 
@@ -21,16 +22,13 @@ def main_page(request):
     )
 
 def user_page(request, username):
-    try:
-        user = User.objects.get(username=username)
-    except User.DoesNotExist:
-        raise Http404(u'Requested user not found.')
-
-    bookmarks = user.bookmark_set.all()
+    user = get_object_or_404(User, username=username)
+    bookmarks = user.bookmark_set.order_by('-id')
 
     variables = RequestContext(request, {
         'username': username,
-        'bookmarks': bookmarks
+        'bookmarks': bookmarks,
+        'show_tags': True
     })
 
     return render_to_response('user_page.html', variables)

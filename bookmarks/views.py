@@ -1,4 +1,4 @@
-# Views available:
+### Views available: ###
 # main_page
 # user_page
 # logout_page
@@ -6,6 +6,7 @@
 # bookmark_save_page
 # tag_page
 # tag_cloud_page
+# search_page
 
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -21,8 +22,6 @@ from bookmarks.forms import *
 
 from bookmarks.models import *
 from django.contrib.auth.decorators import login_required
-
-# Create your views here.
 
 def main_page(request):
     return render_to_response(
@@ -137,3 +136,24 @@ def tag_cloud_page(request):
         'tags': tags
     })
     return render_to_response('tag_cloud_page.html', variables)
+
+def search_page(request):
+    form = SearchForm()
+    bookmarks = []
+    show_results = False
+    if 'query' in request.GET:
+        show_results = True
+        query = request.GET['query'].strip()
+        if query:
+            form = SearchForm({'query' : query})
+            bookmarks = Bookmark.objects.filter(
+                    title__icontains=query
+            )[:10]
+    variables = RequestContext(request, {
+        'form': form,
+        'bookmarks': bookmarks,
+        'show_results': show_results,
+        'show_tags': True,
+        'show_user': True
+    })
+    return render_to_response('search.html', variables)

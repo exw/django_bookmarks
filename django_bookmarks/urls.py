@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^user/(\w+)/$', bookmarks.user_page, name='user_page'),
     url(r'^tag/([^\s]+)/$', bookmarks.tag_page, name='tag_page'),
     url(r'^tag/$', bookmarks.tag_cloud_page, name='tag_cloud_page'),
+    url(r'^search/$', bookmarks.search_page, name='search_page'),
 
     # Session management
     url(r'^login/$', 'django.contrib.auth.views.login'),

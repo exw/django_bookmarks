@@ -7,7 +7,7 @@
         {% load staticfiles %}
         <link href="{% static 'bookmarks/style.css' %}" rel="stylesheet" type="text/css" media="screen">
         <script type="text/javascript"
-                src="/static/jquery.js"></script>
+                src="{% static 'bookmarks/jquery.js' %}"></script>
             {% block external %}{% endblock %}
     </head>
     <body>

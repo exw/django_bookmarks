@@ -1,4 +1,18 @@
 {% extends "base.html" %}
+{% load staticfiles %}
+{% block external %}
+    <link rel="stylesheet"
+          href= "{% static 'bookmarks/jquery.autocomplete.css' %}"
+          type="text/css" />
+    <script type="text/javascript" 
+            src= "{% static 'bookmarks/jquery.dimensions.js' %}"></script>
+    <script type="text/javascript" 
+            src= "{% static 'bookmarks/jquery.bgiframe.min.js' %}"></script>
+    <script type="text/javascript" 
+            src= "{% static 'bookmarks/jquery.autocomplete.js' %}"></script>
+    <script type="text/javascript" 
+            src= "{% static 'bookmarks/tag_autocomplete.js' %}"></script>
+{% endblock %}    
 {% block title %}Save Bookmark{% endblock %}
 {% block head %}Save Bookmark{% endblock %}
 {% block content %}

@@ -37,6 +37,10 @@ urlpatterns = [
     # Account management
     url(r'^save/$', bookmarks.bookmark_save_page, name='bookmark_save_page'),
 
+    # Ajax
+    url(r'^ajax/tag/autocomplete/$', bookmarks.ajax_tag_autocomplete, 
+        name ='ajax_tag_autocomplete'),
+
     # Static Files
     # url(r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': site_media}),
 ]

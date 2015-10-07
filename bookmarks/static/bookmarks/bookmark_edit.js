@@ -1,8 +1,10 @@
 function bookmark_edit() {
     var item = $(this).parent();
-    var url = item.find(".title").attr("href");
+    //var url = item.find(".title").attr("href");
+    var url = this.href + "&ajax";
     item.load(
-            "/save/?ajax&url=" + encodeURIComponent(url),
+            //"/save/?ajax&url=" + encodeURIComponent(url),
+            url,
             null,
             function () {
                 $("#save-form").submit(bookmark_save);
